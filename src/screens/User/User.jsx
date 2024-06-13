@@ -3,12 +3,19 @@ import React from 'react'
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from '@react-navigation/native';
 
 const User = () => {
-  const width = Dimensions.get('window').width;
+  const route = useNavigation();
+
+  const handeNavigateHome = () => {
+    route.navigate('Home')
+
+  }
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}>
+       <StatusBar translucent  backgroundColor= 'transparent' barStyle={'default'}/>
+       <View style={styles.topContainer}>
         <View style={{ width: 25, height: 25 }}></View>
         <Image source={require("../../assets/images/splashimg.png")} style={styles.topImg} />
         <TouchableOpacity>
@@ -17,39 +24,39 @@ const User = () => {
       </View>
       <View style={styles.contentContainer}>
         <View style={styles.imgRow}>
-          <View style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
+          <TouchableOpacity onPress={() => handeNavigateHome()} style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
             <Image source={require("../../assets/images/emenalo.png")} />
             <Text style={styles.imgText}>Emenalo</Text>
 
-          </View>
-          <View style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handeNavigateHome()} style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
             <Image source={require("../../assets/images/oneyaka.png")} />
             <Text style={styles.imgText}>Onyeka</Text>
 
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.imgRow}>
-          <View style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
+          <TouchableOpacity onPress={() => handeNavigateHome()} style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
             <Image source={require("../../assets/images/thelma.png")} />
             <Text style={styles.imgText}>Thelma</Text>
-          </View>
-          <View style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handeNavigateHome()} style={{ alignItems: "center", gap: 5, width: 100, height: 122 }}>
             <Image source={require("../../assets/images/kids.png")} />
             <Text style={styles.imgText}>Kids</Text>
-          </View>
+          </TouchableOpacity>
 
         </View>
         <View style={styles.imgRow}>
-          <View style={{ alignItems: "center", width: 100, height: 122 ,marginTop:20}}>
-            <MaterialIcons name='add-circle' size={55} color="#fff"/>
+          <TouchableOpacity style={{ alignItems: "center", width: 100, height: 122, marginTop: 20 }}>
+            <MaterialIcons name='add-circle' size={55} color="#fff" />
             <Text style={styles.imgText}>Add Profile</Text>
-          </View>
+          </TouchableOpacity>
           <View style={{ width: 100, height: 122 }}>
-           </View>
-          
+          </View>
+
 
         </View>
-       
+
 
       </View>
 
@@ -62,22 +69,22 @@ export default User
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
-    paddingTop: StatusBar.currentHeight
-
+    backgroundColor: '#080508',
+    paddingTop: StatusBar.currentHeight,
   },
   topContainer: {
     flexDirection: 'row',
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+    // paddingTop:5,
     paddingHorizontal: 20
 
   },
   topImg: {
 
-    height: responsiveHeight(4),
-    width: responsiveWidth(30),
+    height: responsiveHeight(6),
+    width: responsiveWidth(35),
     resizeMode: "cover",
 
   },

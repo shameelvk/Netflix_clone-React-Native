@@ -4,6 +4,7 @@ import { getUpcomingMovies } from '../api/Network'
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import LinearGradient from 'react-native-linear-gradient'
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useNavigation } from '@react-navigation/native'
 
 const HomeBanner = () => {
     const [upcommingMovieData, setupcommingMovieData] = useState([])
@@ -25,12 +26,16 @@ const HomeBanner = () => {
 
 
     }, [])
+    const route=useNavigation()
+    const handlePlay=(item)=>{
+        route.navigate('MovieDetails',{item})
+    }
 
-    const RenderHomeBanner = ({ item, index }) => {
+    const RenderHomeBanner = ({ item, index ,handlePlay}) => {
         return <ImageBackground imageStyle={{opacity:0.8}} resizeMode='cover' style={styles.bannerImg} source={{ uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}` }}>
             <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']} style={styles.linearContainer}>
                 <Text style={styles.title}>My List</Text>
-                <TouchableOpacity activeOpacity={.8} style={styles.playButton}>
+                <TouchableOpacity onPress={()=>handlePlay(item)}  activeOpacity={.8} style={styles.playButton}>
                     <FontAwesome5 name='play' size={25} color="black" />
                     <Text style={[styles.title, {
                         fontSize: responsiveFontSize(2.2),
@@ -46,7 +51,7 @@ const HomeBanner = () => {
 
     return (
         <View style={styles.container}>
-            <FlatList showsHorizontalScrollIndicator={false} horizontal data={upcommingMovieData} renderItem={RenderHomeBanner} pagingEnabled />
+            <FlatList showsHorizontalScrollIndicator={false} horizontal data={upcommingMovieData} renderItem={({item})=><RenderHomeBanner item={item} handlePlay={handlePlay}/>} pagingEnabled />
         </View>
     )
 }

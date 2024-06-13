@@ -1,18 +1,27 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
+import { useNavigation } from '@react-navigation/native'
 
 const MovieCard = ({title,data}) => {
+  const route=useNavigation();
+
+  function handleNavigation(item) {
+    route.navigate('MovieDetails',{item})
+    
+  }
 
     const renderMovieCard=({item})=>{
         return(
-            <Image
+            <TouchableOpacity onPress={()=>handleNavigation(item)}>
+              <Image
           resizeMode="contain"
           style={styles.movieImg}
           source={{
             uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
           }}
-        />
+              />
+            </TouchableOpacity>
         )
     }
   return (

@@ -69,3 +69,20 @@ export const getUpcomingMovies = async () => {
       return {success: false, data: error};
     }
   };
+
+  export const getSearchMovie=async(searchText)=>{
+    try {
+       const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=false&language=en-US&page=1'`, {
+          headers: {
+            Authorization: `Bearer ${Config.token}`,
+          },
+        });
+        const data = response.data;
+        const status = response.status;
+        return {success: true, data: data, status: status};
+      } catch (error) {
+        console.log(error);
+        return {success: false, data: error};
+      }
+
+}

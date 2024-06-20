@@ -1,4 +1,4 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Button, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Fontisto from "react-native-vector-icons/Fontisto";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -57,7 +57,7 @@ const More = () => {
 
 
         <View style={styles.socialContainer}>
-          <FontAwesome name='whatsapp' size={36} color="#20B038" />
+          <FontAwesome name='whatsapp' size={36} color="#fff" />
           <View style={{ width: 1, height: 30, backgroundColor: '#8C8787' }} />
           <FontAwesome name='facebook-square' size={36} color="#fff" />
           <View style={{ width: 1, height: 30, backgroundColor: '#8C8787' }} />
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     padding: 20,
     gap: 20,
-    paddingTop:30,
+    paddingTop:StatusBar.currentHeight,
   },
   catgoryContainer: {
     flexDirection: "row",

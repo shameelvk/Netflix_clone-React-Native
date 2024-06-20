@@ -1,12 +1,18 @@
-import { FlatList, Image, LogBox, StyleSheet, Text, TextInput, View } from 'react-native'
+import { FlatList, Image, LogBox, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { responsiveHeight, responsiveScreenHeight, responsiveScreenWidth, responsiveWidth } from 'react-native-responsive-dimensions'
 import Fontisto from "react-native-vector-icons/Fontisto";
 import { getPopularMovies, getSearchMovie } from '../../api/Network';
 import Octicons from "react-native-vector-icons/Octicons";
+import { useNavigation } from '@react-navigation/native';
 
 const Search = () => {
     const [topSearchMovie, setTopSearchMovie] = useState([])
+    const route=useNavigation();
+    function handleNavigation(item) {
+        route.navigate('MovieDetails',{item})
+        
+      }
 
     useEffect(() => {
 
@@ -48,13 +54,13 @@ const Search = () => {
 
 
     const renderMovieCard = ({ item }) => {
-        return <View style={styles.movieCardContainer}>
+        return <TouchableOpacity onPress={()=>handleNavigation(item)} style={styles.movieCardContainer}>
             <Image source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} resizeMode='cover' style={{ height: responsiveHeight(15), width: responsiveWidth(20), }} />
             <View style={{ flexDirection: "row", flex: 1, justifyContent: "space-between", marginHorizontal: 5 }}>
                 <Text style={{ fontSize: 15, fontWeight: "400", color: "#fff" }}>{item.title}</Text>
                 <Octicons name="play" size={28} color="#fff" />
             </View>
-        </View>
+        </TouchableOpacity>
     }
 
     return (
@@ -78,7 +84,8 @@ export default Search
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#000"
+        backgroundColor: "#000",
+        paddingTop:StatusBar.currentHeight,
     },
     searchContainer: {
         backgroundColor: '#424242',

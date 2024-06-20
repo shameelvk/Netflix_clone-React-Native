@@ -4,12 +4,13 @@ import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-nat
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 
 const User = () => {
   const route = useNavigation();
 
   const handeNavigateHome = () => {
-    route.navigate('Home')
+    route.navigate('BottomTab')
 
   }
   return (

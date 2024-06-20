@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Image, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
@@ -106,7 +106,7 @@ export default ComingSoon
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#000", gap: 5
+        backgroundColor: "#000", gap: 5,paddingTop:StatusBar.currentHeight,
     },
     notificationContainer: {
         flexDirection: "row",

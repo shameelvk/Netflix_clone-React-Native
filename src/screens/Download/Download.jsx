@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const Download = () => {
@@ -30,7 +30,8 @@ export default Download
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000'
+        backgroundColor: '#000',
+        paddingTop:StatusBar.currentHeight,
     },
     mainContent: {
         flex:1,
